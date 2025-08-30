@@ -81,6 +81,11 @@ func (c *Client) SetHandler(handler func([]byte)) {
 	c.handler = handler
 }
 
+// GetHandler returns the current message handler.
+func (c *Client) GetHandler() func([]byte) {
+	return c.handler
+}
+
 // Ingest allows external code to inject a message into the client's
 // inbound processing queue, to be handled by the registered handler.
 func (c *Client) Ingest(req []byte) {
