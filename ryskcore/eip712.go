@@ -35,7 +35,7 @@ var EIP712_TYPES = &apitypes.Types{
 	"Quote": {
 		{
 			Name: "assetAddress",
-			Type: "string",
+			Type: "address",
 		},
 		{
 			Name: "chainId",
@@ -59,7 +59,7 @@ var EIP712_TYPES = &apitypes.Types{
 		},
 		{
 			Name: "nonce",
-			Type: "string",
+			Type: "uint64",
 		},
 		{
 			Name: "price",
@@ -81,8 +81,16 @@ var EIP712_TYPES = &apitypes.Types{
 			Name: "usd",
 			Type: "address",
 		},
+		{
+			Name: "collateralAsset",
+			Type: "address",
+		},
 	},
 	"Transfer": {
+		{
+			Name: "user",
+			Type: "address",
+		},
 		{
 			Name: "asset",
 			Type: "address",
@@ -101,7 +109,7 @@ var EIP712_TYPES = &apitypes.Types{
 		},
 		{
 			Name: "nonce",
-			Type: "string",
+			Type: "uint64",
 		},
 	},
 }
@@ -149,7 +157,7 @@ func createEIP712Domain(chainId int64) *apitypes.TypedDataDomain {
 		Name:              "rysk",
 		Version:           "0.0.0",
 		ChainId:           math.NewHexOrDecimal256(chainId),
-		VerifyingContract: ZeroAddress.String(),
+		VerifyingContract: ADDRESSES[int(chainId)].Rysk.String(),
 	}
 }
 
